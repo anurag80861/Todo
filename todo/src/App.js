@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import TodoItem from './components/TodoItem'
 import Footer from './components/Footer'
-import Actions from './components/Actions';
+
 
 
 function App() {
@@ -11,10 +11,10 @@ function App() {
 
   function handlesubmit() {
     if (todo.trim() === "") return;
-    setAllTodo([...AllTodo, todo]);
+    setAllTodo([...AllTodo, {id:crypto.randomUUID() ,todo}]);
     SetTodo('');
   }
-  console.log(AllTodo);
+  // console.log(AllTodo);
   return (
     <div className='min-h-screen bg-gray-100 flex flex-col items-center'>
       <h1 className='text-4xl font-bold my-8 text-red-500'>Todos</h1>
@@ -34,7 +34,8 @@ function App() {
         <hr className='my-4' />
         <TodoItem AllTodo={AllTodo} setAllTodo={setAllTodo} />
         <hr className='my-4' />
-        <Actions AllTodo={AllTodo} setAllTodo ={setAllTodo} />
+
+
         <Footer />
       </div>
     </div>

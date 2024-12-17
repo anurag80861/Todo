@@ -1,21 +1,22 @@
 import React from 'react'
 
 function TodoItem({ AllTodo, setAllTodo }) {
+  console.log(AllTodo)
 
-  function handleDelete(index) {
-    const newTodos = AllTodo.filter((_, i) => i !== index);
+  function handleDelete(id) {
+    const newTodos = AllTodo.filter(todo=>todo.id !==id);
     setAllTodo(newTodos);
   }
 
   return (
     <div>
       {
-        AllTodo.map((item, index) => (
-          <div key={index} className='flex items-center justify-between p-2 border-b'>
+        AllTodo.map((item) => (
+          <div key={item.id} className='flex items-center justify-between p-2 border-b'>
             <input type="checkbox" className='mr-2' />
-            <p className='flex-1'>{item}</p>
+            <p className='flex-1'>{item.todo}</p>
             <select className="dropdown p-1 rounded border mr-2">
-              <option value="" disabled select>
+              <option value="" disabled selected hidden>
                 Select a Color
               </option>
               <option value="red" style={{ color: 'red' }}>
@@ -37,7 +38,7 @@ function TodoItem({ AllTodo, setAllTodo }) {
    
             </select>
             <button 
-              onClick={() => handleDelete(index)} 
+              onClick={() => handleDelete(item.id)} 
               className='bg-red-500 text-white px-2 py-1 rounded hover:bg-red-700'
             >
               X
