@@ -1,20 +1,37 @@
 import React from 'react'
 
-function TodoItem({ AllTodo, setAllTodo }) {
-  console.log(AllTodo)
+function TodoItem({ allTodo, setAllTodo }) {
+  console.log(allTodo)
 
+
+  
   function handleDelete(id) {
-    const newTodos = AllTodo.filter(todo=>todo.id !==id);
+    const newTodos = allTodo.filter(todo=>todo.id !==id);
     setAllTodo(newTodos);
   }
 
+  const handleCheckboxChange = (id) => {
+    const updatedTodos = allTodo.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    setAllTodo(updatedTodos);
+  };
+  
   return (
     <div>
       {
-        AllTodo.map((item) => (
+        allTodo.map((item) => (
           <div key={item.id} className='flex items-center justify-between p-2 border-b'>
-            <input type="checkbox" className='mr-2' />
+            <input 
+            type="checkbox" 
+            className='mr-2' 
+            onChange={()=> handleCheckboxChange(item.id)}
+            checked={item.completed} />
+
+
             <p className='flex-1'>{item.todo}</p>
+
+
             <select className="dropdown p-1 rounded border mr-2">
               <option value="" disabled selected hidden>
                 Select a Color

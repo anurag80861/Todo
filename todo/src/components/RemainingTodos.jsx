@@ -1,9 +1,9 @@
 import React from 'react'
 
-function RemainingTodos() {
+function RemainingTodos({remainingTasksCount}) {
   return (
     <div className='gap-4'>RemainingTodos
-        <p>1 item left</p>
+        <p>{remainingTasksCount} item left</p>
     </div>
 
   )
