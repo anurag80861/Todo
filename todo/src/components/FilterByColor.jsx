@@ -1,9 +1,9 @@
 import React from 'react'
 
-function FilterByColor() {
+function FilterByColor({filterByColor}) {
   return (
-    <div className='p-4'>
-      <h2 className=' font-bold mb-4'>Filter By Color</h2>  
+    <div className=''>
+      <h2 className=' font-bold mb-4'>{filterByColor}Filter By Color</h2>  
       <div className='space-x-2 flex items-center'>
         <input type="checkbox" className='mr-2' />
         <button className='bg-green-800 px-4 py-2 rounded hover:bg-green-700'> </button>

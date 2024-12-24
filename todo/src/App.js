@@ -5,9 +5,9 @@ import Footer from './components/Footer';
 function App() {
   const [todo, setTodo] = useState('');
   const [allTodo, setAllTodo] = useState([
-    { id: 1, todo: 'Learn React', completed: false },
-    { id: 2, todo: 'Read a book', completed: false },
-    { id: 3, todo: 'Exercise', completed: false },
+    { id: 1, todo: 'Learn React', completed: false, color: "" },
+    { id: 2, todo: 'Read a book', completed: false, color: "" },
+    { id: 3, todo: 'Exercise', completed: false, color: "" },
   ]);
 
   function handleAddTodosubmit() {
@@ -25,12 +25,29 @@ function App() {
   }
 
   function remainingTasksCount() {
-    return allTodo.filter((task) => !task.completed).length;
+    return allTodo.filter((task) => !task.completed).length
   }
 
   function handleDeleteAllClear() {
     const newTodos = allTodo.filter((task) => !task.completed); // Keep tasks that are not completed
     setAllTodo(newTodos);
+  }
+
+  function filterByColor() {
+
+  }
+
+
+  function FilterByStatusButton(str) {
+
+    if (str === 'All')
+      setAllTodo(allTodo)
+    else if (str === "Active") {
+      setAllTodo(allTodo.filter((item) => item.completed == false))
+    }
+    else if (str === "completed") {
+      setAllTodo(allTodo.filter((item) => item.completed == true))
+    }
   }
   
 
@@ -61,6 +78,9 @@ function App() {
           handleAllMarks={handleAllMarks}
           remainingTasksCount={remainingTasksCount()}
           handleDeleteAllClear={handleDeleteAllClear}
+          filterByColor={filterByColor}
+          FilterByStatusButton={FilterByStatusButton}
+          allTodo={allTodo}
         />
       </div>
     </div>

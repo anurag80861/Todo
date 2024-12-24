@@ -5,14 +5,14 @@ import FilterByStatus from './FilterByStatus'
 import Actions from './Actions'
 
 
-function Footer({ handleAllMarks, remainingTasksCount, handleDeleteAllClear }) {
+function Footer({ handleAllMarks, remainingTasksCount, handleDeleteAllClear,filterByColor,FilterByStatusButton,allTodo}) {
     return (
         <div className='flex justify-around'>
 
             <Actions handleAllMarks={handleAllMarks} handleDeleteAllClear={handleDeleteAllClear} />
             <RemainingTodos remainingTasksCount={remainingTasksCount} />
-            <FilterByStatus />
-            <FilterByColor />
+            <FilterByStatus FilterByStatusButton={FilterByStatusButton} />
+            <FilterByColor filterByColor={filterByColor } />
 
 
         </div>

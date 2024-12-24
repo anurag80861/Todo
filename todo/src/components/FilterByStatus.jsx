@@ -1,11 +1,15 @@
 import React from 'react'
 
-function FilterByStatus() {
+function FilterByStatus(  {FilterByStatusButton}) {
+
+
   return (
-    <div className='gap-10'>FilterByStatus
-        <p>All</p>
-        <p>Active</p>
-        <p>Completed</p>
+    <div className='flex flex-col gap-3 '>
+      <h1 className='font-bold '>FilterByStatus</h1>
+      <button className='border-r-2px bg-blue-500 h-12 w-28 rounded-2xl text-white ' onClick={() => FilterByStatusButton("All")}> All</button>
+      <button className='border-r-2px bg-blue-500 h-12 w-28 rounded-2xl text-white ' onClick={() => FilterByStatusButton("Active")}>Active</button>
+      <button className='border-r-2px bg-blue-500 h-12 w-28 rounded-2xl text-white' onClick={() => FilterByStatusButton("completed")}>Completed</button>
+
     </div>
   )
 }
