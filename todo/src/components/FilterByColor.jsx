@@ -29,7 +29,7 @@ function FilterByColor({filterByColor}) {
         <button className='bg-red-800 px-4 py-2 rounded hover:bg-red-700'> </button>
         <span >Red</span>
       </div>
-    </div>
+    </div>      
   )
 }
 

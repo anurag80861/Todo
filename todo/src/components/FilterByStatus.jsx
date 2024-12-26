@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FilterByStatus(  {FilterByStatusButton}) {
+function FilterByStatus({ FilterByStatusButton }) {
 
 
   return (

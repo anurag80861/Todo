@@ -9,10 +9,13 @@ function App() {
     { id: 2, todo: 'Read a book', completed: false, color: "" },
     { id: 3, todo: 'Exercise', completed: false, color: "" },
   ]);
+  const [filter, setFilter] = useState('All');
 
   function handleAddTodosubmit() {
     if (todo.trim() === '') return;
-    setAllTodo([...allTodo, { id: crypto.randomUUID(), todo, completed: false }]);
+    const newTodo = { id: crypto.randomUUID(), todo, completed: false };
+    const newAllTodo = [...allTodo, newTodo];
+    setAllTodo(newAllTodo);
     setTodo('');
   }
 
@@ -25,31 +28,27 @@ function App() {
   }
 
   function remainingTasksCount() {
-    return allTodo.filter((task) => !task.completed).length
+    return allTodo.filter((task) => !task.completed).length;
   }
 
   function handleDeleteAllClear() {
-    const newTodos = allTodo.filter((task) => !task.completed); // Keep tasks that are not completed
+    const newTodos = allTodo.filter((task) => !task.completed);
     setAllTodo(newTodos);
   }
 
   function filterByColor() {
-
+    
   }
-
 
   function FilterByStatusButton(str) {
-
-    if (str === 'All')
-      setAllTodo(allTodo)
-    else if (str === "Active") {
-      setAllTodo(allTodo.filter((item) => item.completed == false))
-    }
-    else if (str === "completed") {
-      setAllTodo(allTodo.filter((item) => item.completed == true))
-    }
-  }
-  
+    setFilter(str);
+  } 
+  const filteredTodo =
+    filter === 'All'
+      ? allTodo
+      : filter === 'Active'
+        ? allTodo.filter((item) => !item.completed)
+        : allTodo.filter((item) => item.completed);
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center">
@@ -69,11 +68,10 @@ function App() {
         </button>
         <hr className="my-4" />
 
-        {/* Todo Items */}
-        <TodoItem allTodo={allTodo} setAllTodo={setAllTodo} />
+        <TodoItem allTodo={filteredTodo} setAllTodo={setAllTodo} />
         <hr className="my-4" />
 
-        {/* Footer with Remaining Tasks Count */}
+     
         <Footer
           handleAllMarks={handleAllMarks}
           remainingTasksCount={remainingTasksCount()}

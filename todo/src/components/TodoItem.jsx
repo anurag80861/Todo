@@ -21,6 +21,7 @@ function TodoItem({ allTodo, setAllTodo }) {
     );
    
     setAllTodo(updatedTodos, "updated");
+  
   };
 
   
