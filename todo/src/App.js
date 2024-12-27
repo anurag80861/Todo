@@ -10,7 +10,12 @@ function App() {
     { id: 3, todo: 'Exercise', completed: false, color: "" },
   ]);
   const [filter, setFilter] = useState('All');
+  const [choices,setChoices] = useState([])
 
+
+
+
+  
   function handleAddTodosubmit() {
     if (todo.trim() === '') return;
     const newTodo = { id: crypto.randomUUID(), todo, completed: false };
@@ -29,26 +34,38 @@ function App() {
 
   function remainingTasksCount() {
     return allTodo.filter((task) => !task.completed).length;
-  }
+  }//Count Functinalties 
 
   function handleDeleteAllClear() {
     const newTodos = allTodo.filter((task) => !task.completed);
     setAllTodo(newTodos);
   }
 
-  function filterByColor() {
-    
-  }
 
   function FilterByStatusButton(str) {
     setFilter(str);
   } 
-  const filteredTodo =
-    filter === 'All'
-      ? allTodo
-      : filter === 'Active'
-        ? allTodo.filter((item) => !item.completed)
-        : allTodo.filter((item) => item.completed);
+  // const filteredTodo =
+  //   filter === 'All'
+  //     ? allTodo
+  //     : filter === 'Active'
+  //       ? allTodo.filter((item) => !item.completed)
+  //       : allTodo.filter((item) => item.completed);
+
+  function handleSetChoices(e) {
+    const name = e.target.name;
+  
+    setChoices((prev) => {
+      if (prev.includes(name)) {
+        // Remove the color if it already exists
+        return prev.filter((choice) => choice !== name);
+      } else {
+        // Add the color if it doesn't exist
+        return [...prev, name];
+      }
+    });
+  }
+  
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center">
@@ -68,7 +85,7 @@ function App() {
         </button>
         <hr className="my-4" />
 
-        <TodoItem allTodo={filteredTodo} setAllTodo={setAllTodo} />
+        <TodoItem allTodo={allTodo} choices={choices} filter={filter} setAllTodo={setAllTodo} />
         <hr className="my-4" />
 
      
@@ -76,9 +93,10 @@ function App() {
           handleAllMarks={handleAllMarks}
           remainingTasksCount={remainingTasksCount()}
           handleDeleteAllClear={handleDeleteAllClear}
-          filterByColor={filterByColor}
+          
           FilterByStatusButton={FilterByStatusButton}
           allTodo={allTodo}
+          handleSetChoices={handleSetChoices}
         />
       </div>
     </div>
