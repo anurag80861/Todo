@@ -5,16 +5,10 @@ import Footer from './components/Footer';
 function App() {
   const [todo, setTodo] = useState('');
   const [allTodo, setAllTodo] = useState([
-    { id: 1, todo: 'Learn React', completed: false, color: "" },
-    { id: 2, todo: 'Read a book', completed: false, color: "" },
-    { id: 3, todo: 'Exercise', completed: false, color: "" },
+      { id: 1, todo: 'Learn React', completed: false, color: "" }
   ]);
   const [filter, setFilter] = useState('All');
   const [choices,setChoices] = useState([])
-
-
-
-
   
   function handleAddTodosubmit() {
     if (todo.trim() === '') return;
@@ -65,6 +59,8 @@ function App() {
       }
     });
   }
+  
+  
   
 
   return (
