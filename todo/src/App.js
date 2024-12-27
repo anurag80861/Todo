@@ -8,7 +8,7 @@ function App() {
       { id: 1, todo: 'Learn React', completed: false, color: "" }
   ]);
   const [filter, setFilter] = useState('All');
-  const [choices,setChoices] = useState([])
+  const [choices,setChoices] = useState([])     
   
   function handleAddTodosubmit() {
     if (todo.trim() === '') return;
